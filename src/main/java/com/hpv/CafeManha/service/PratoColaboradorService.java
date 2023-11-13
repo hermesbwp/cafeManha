@@ -1,4 +1,5 @@
 package com.hpv.CafeManha.service;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class PratoColaboradorService{
 	}
 	
 	public PratoColaboradorModel add(PratoColaboradorModel pratoColaborador) {
+		
 		return pratoColaboradorRepository.save(pratoColaborador);
 	}
 
@@ -30,6 +32,14 @@ public class PratoColaboradorService{
 			return pratoColaboradorRepository.save(pratoColaboradorNovo);
 		}
 		return pratoColaboradorNovo;
+	}
+	
+	public boolean isPratoLevadoEmpresa(Date dataCafe) {
+		Date dataAtual = new Date();
+		if(!(dataAtual.compareTo(dataCafe)==1)) {
+			return false;			
+		}
+		return true;
 	}
 
 }
