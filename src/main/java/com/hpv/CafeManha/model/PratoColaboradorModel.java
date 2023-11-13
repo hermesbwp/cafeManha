@@ -1,7 +1,6 @@
-package model;
+package com.hpv.CafeManha.model;
 
 import java.util.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -11,8 +10,8 @@ import jakarta.persistence.GenerationType;
 public class PratoColaboradorModel {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	
 	private String nome;
 	
@@ -23,8 +22,12 @@ public class PratoColaboradorModel {
 	private Date dataCafe;
 	
 	private Boolean trouxe;
+	
+	public PratoColaboradorModel() {
+		super();
+	}
 
-	public PratoColaboradorModel(Integer id, String nome, String cpf, String prato, Date dataCafe, Boolean trouxe) {
+	public PratoColaboradorModel(Long id, String nome, String cpf, String prato, Date dataCafe, Boolean trouxe) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -34,11 +37,11 @@ public class PratoColaboradorModel {
 		this.trouxe = trouxe;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
