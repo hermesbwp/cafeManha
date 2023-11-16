@@ -18,6 +18,11 @@ public class PratoColaboradorService{
 	
 	public PratoColaboradorModel add(PratoColaboradorModel pratoColaborador) {
 		
+		var dataAtual=new Date();
+		
+		if(!pratoColaborador.getDataCafe().after(dataAtual)) {
+			pratoColaborador.setTrouxe(false);
+		}
 		return pratoColaboradorRepository.save(pratoColaborador);
 	}
 
@@ -31,7 +36,7 @@ public class PratoColaboradorService{
 			pratoColaboradorNovo.setId(id);
 			return pratoColaboradorRepository.save(pratoColaboradorNovo);
 		}
-		return pratoColaboradorNovo;
+		return null;
 	}
 	
 	public boolean isPratoLevadoEmpresa(Date dataCafe) {

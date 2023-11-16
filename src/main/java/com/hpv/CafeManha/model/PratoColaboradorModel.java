@@ -3,6 +3,8 @@ package com.hpv.CafeManha.model;
 import java.util.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
@@ -13,11 +15,13 @@ public class PratoColaboradorModel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String nome;
+	@OneToOne
+	@JoinColumn(name="id_colaborador", nullable=false, updatable=false)
+	private ColaboradorModel colaborador;
 	
-	private String cpf;
-	
-	private String prato;
+	@OneToOne
+	@JoinColumn(name="id_prato", nullable=false, updatable=false)
+	private PratoModel prato;
 	
 	private Date dataCafe;
 	
@@ -27,11 +31,11 @@ public class PratoColaboradorModel {
 		super();
 	}
 
-	public PratoColaboradorModel(Long id, String nome, String cpf, String prato, Date dataCafe, Boolean trouxe) {
+	public PratoColaboradorModel(Long id, ColaboradorModel colaborador, PratoModel prato, Date dataCafe,
+			Boolean trouxe) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
+		this.colaborador = colaborador;
 		this.prato = prato;
 		this.dataCafe = dataCafe;
 		this.trouxe = trouxe;
@@ -45,27 +49,19 @@ public class PratoColaboradorModel {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public ColaboradorModel getColaborador() {
+		return colaborador;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setColaborador(ColaboradorModel colaborador) {
+		this.colaborador = colaborador;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getPrato() {
+	public PratoModel getPrato() {
 		return prato;
 	}
 
-	public void setPrato(String prato) {
+	public void setPrato(PratoModel prato) {
 		this.prato = prato;
 	}
 

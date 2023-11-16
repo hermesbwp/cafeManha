@@ -6,6 +6,5 @@ import com.hpv.CafeManha.model.PratoColaboradorModel;
 
 public interface IPratoColaboradorRepository extends JpaRepository<PratoColaboradorModel, Long>{
 	
-	public void deleteById(Long id);
 	
 }

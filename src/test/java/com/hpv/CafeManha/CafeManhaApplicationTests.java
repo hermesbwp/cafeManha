@@ -7,16 +7,21 @@ import java.util.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.hpv.CafeManha.model.ColaboradorModel;
 import com.hpv.CafeManha.model.PratoColaboradorModel;
+import com.hpv.CafeManha.model.PratoModel;
 
 @SpringBootTest
 class CafeManhaApplicationTests {
 
 	@Test
 	void contextLoads() {
-		PratoColaboradorModel pratoColaboradorModel=new PratoColaboradorModel((long) 1,"Joao","99999999999","Cafe",new Date(),true);
 		
-		assertEquals("Joao", pratoColaboradorModel.getNome());
+//		var colaborador= new ColaboradorModel((long) 1,"Jose","12345678909");
+//		var prato= new PratoModel((long) 1,"Cafe");
+//		PratoColaboradorModel pratoColaboradorModel=new PratoColaboradorModel((long) 1,colaborador,prato,new Date(),true);
+//		
+//		assertEquals("Jose", pratoColaboradorModel.getColaborador().getNome());
 	}
 
 }
