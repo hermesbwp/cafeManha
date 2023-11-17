@@ -3,7 +3,10 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.hpv.CafeManha.model.ColaboradorModel;
 import com.hpv.CafeManha.model.PratoColaboradorModel;
+import com.hpv.CafeManha.model.PratoModel;
 import com.hpv.CafeManha.repository.IColaboradorRepository;
 import com.hpv.CafeManha.repository.IPratoColaboradorRepository;
 import com.hpv.CafeManha.repository.IPratoRepository;
@@ -31,6 +34,15 @@ public class PratoColaboradorService{
 	}
 	
 	public PratoColaboradorModel add(PratoColaboradorModel pratoColaborador, Long pratoId, Long colaboradorId) {
+		var pratoNovo=new PratoModel();
+		var colabNovo= new ColaboradorModel();
+		
+		if(pratoRepository.existsById(pratoId)&&colaboradorRepository.existsById(colaboradorId)) {
+			pratoNovo=pratoService.find(pratoId);
+			colabNovo=colaboradorService.find(colaboradorId);			
+		}else {
+			return null;
+		}
 		
 		var dataAtual=new Date();
 		
@@ -38,18 +50,23 @@ public class PratoColaboradorService{
 			pratoColaborador.setTrouxe(false);
 		}
 		
-		//TODO procurar os pratos do dia
-		var listOfPratosDia = pratoRepository.findPratoDia(pratoColaborador.getDataCafe());
-		//TODO verificar se o novo prato pertence ao conjunto de pratos do dia
-		
-		
-		if(colaboradorRepository.existsById(colaboradorId)&&pratoRepository.existsById(pratoId)) {
-			pratoColaborador.setColaborador(colaboradorService.find(colaboradorId));
-			pratoColaborador.setPrato(pratoService.find(pratoId));
+		if(!isColaboradorLevaMesmoPratoDia(pratoColaborador, pratoNovo, colabNovo)) {
+			pratoColaborador.setColaborador(colabNovo);
+			pratoColaborador.setPrato(pratoNovo);
 			return pratoColaboradorRepository.save(pratoColaborador);
 		}
 		
 		return null;
+	}
+
+	private boolean isColaboradorLevaMesmoPratoDia(PratoColaboradorModel pratoColaborador,
+			PratoModel pratoNovo, ColaboradorModel colabNovo) {
+		var listOfPratosColaboradorDia = pratoColaboradorRepository.findColaboradorPratoDia(pratoColaborador.getDataCafe());
+		for(PratoColaboradorModel pratoColaboradorModel:listOfPratosColaboradorDia) {
+			if(pratoColaboradorModel.getColaborador().equals(colabNovo)&&pratoColaboradorModel.getPrato().equals(pratoNovo)) {
+			return false;
+			}
+		}return true;
 	}
 
 	public void delete(Long id) {
@@ -71,6 +88,10 @@ public class PratoColaboradorService{
 			return false;			
 		}
 		return true;
+	}
+	
+	public List<PratoColaboradorModel> teste(){
+		return pratoColaboradorRepository.teste();
 	}
 
 }

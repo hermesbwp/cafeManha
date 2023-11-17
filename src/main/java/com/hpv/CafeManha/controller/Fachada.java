@@ -34,6 +34,11 @@ public class Fachada {
 		return new ResponseEntity<String>("Teste", HttpStatus.OK);
 	}
 	
+	@GetMapping("/test")
+	public List<PratoColaboradorModel> test() {
+		return pratoColaboradorService.teste();
+	}
+	
 	@GetMapping("/findAll")
 	public List<PratoColaboradorModel> findAll() {
 		return pratoColaboradorService.findAll();

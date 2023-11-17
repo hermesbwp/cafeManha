@@ -7,5 +7,6 @@ import com.hpv.CafeManha.model.ColaboradorModel;
 
 public interface IColaboradorRepository extends JpaRepository<ColaboradorModel, Long>{
 	public Optional<ColaboradorModel> findById(Long colaboradorId);
+
 	
 }
