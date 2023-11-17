@@ -17,11 +17,11 @@ class CafeManhaApplicationTests {
 	@Test
 	void contextLoads() {
 		
-//		var colaborador= new ColaboradorModel((long) 1,"Jose","12345678909");
-//		var prato= new PratoModel((long) 1,"Cafe");
-//		PratoColaboradorModel pratoColaboradorModel=new PratoColaboradorModel((long) 1,colaborador,prato,new Date(),true);
-//		
-//		assertEquals("Jose", pratoColaboradorModel.getColaborador().getNome());
+		var colaborador= new ColaboradorModel((long) 1,"Jose","12345678909");
+		var prato= new PratoModel((long) 1,"Cafe");
+		PratoColaboradorModel pratoColaboradorModel=new PratoColaboradorModel((long) 1,colaborador,prato,new Date(),true);
+		
+		assertEquals("Jose", pratoColaboradorModel.getColaborador().getNome());
 	}
 
 }

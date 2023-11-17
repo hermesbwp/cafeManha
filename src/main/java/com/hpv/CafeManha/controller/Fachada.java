@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.hpv.CafeManha.model.ColaboradorModel;
 import com.hpv.CafeManha.model.PratoColaboradorModel;
 import com.hpv.CafeManha.model.PratoModel;
@@ -50,10 +49,12 @@ public class Fachada {
 		return pratoService.findAll();
 	}
 	
-	@PostMapping("/addPratoColaborador")
-	public PratoColaboradorModel add(
-			@RequestBody PratoColaboradorModel pratoColaborador) {
-		return pratoColaboradorService.add(pratoColaborador);
+	@PostMapping("/addPratoColaborador/{idPrato}/{idColaborador}")
+	public void add(
+			@RequestBody PratoColaboradorModel pratoColaborador,
+			@PathVariable("idPrato") Long idPrato,
+			@PathVariable("idColaborador") Long idColaborador) {
+		pratoColaboradorService.add(pratoColaborador,idPrato,idColaborador);
 	}
 	
 	@PostMapping("/addColaborador")

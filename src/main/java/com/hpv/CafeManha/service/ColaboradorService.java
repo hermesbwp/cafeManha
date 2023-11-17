@@ -15,7 +15,20 @@ public class ColaboradorService {
 		return colaboradorRepository.findAll();
 	}
 	
+	public ColaboradorModel find(Long id) {
+		return colaboradorRepository.getReferenceById(id);
+	}
+	
 	public ColaboradorModel add(ColaboradorModel colaborador) {
+		
+		var listOfColab = colaboradorRepository.findAll();
+		
+		for(ColaboradorModel c:listOfColab) {
+			if(c.getCpf().equals(colaborador.getCpf())
+					||c.getNome().equals(colaborador.getNome())) {
+				return null;
+			}
+		}
 		
 		return colaboradorRepository.save(colaborador);
 	}

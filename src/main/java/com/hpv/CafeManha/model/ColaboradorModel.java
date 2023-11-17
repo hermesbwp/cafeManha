@@ -22,7 +22,6 @@ public class ColaboradorModel {
 
 	public ColaboradorModel(Long id, String nome, String cpf) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 	}

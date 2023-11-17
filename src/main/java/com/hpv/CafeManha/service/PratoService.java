@@ -16,6 +16,10 @@ public class PratoService {
 		return pratoRepository.findAll();
 	}
 	
+	public PratoModel find(Long id) {
+		return pratoRepository.getReferenceById(id);
+	}
+	
 	public PratoModel add(PratoModel pratoColaborador) {
 		
 		return pratoRepository.save(pratoColaborador);
