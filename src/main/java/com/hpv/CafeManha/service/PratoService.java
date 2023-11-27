@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hpv.CafeManha.model.ColaboradorModel;
 import com.hpv.CafeManha.model.PratoModel;
 import com.hpv.CafeManha.repository.IPratoRepository;
 
@@ -20,9 +21,15 @@ public class PratoService {
 		return pratoRepository.getReferenceById(id);
 	}
 	
-	public PratoModel add(PratoModel pratoColaborador) {
+	public PratoModel add(PratoModel prato) {
+		var listOfPrato = pratoRepository.findAll();
 		
-		return pratoRepository.save(pratoColaborador);
+		for(PratoModel p:listOfPrato) {
+			if(p.getNome().equals(prato.getNome())) {
+				return null;
+			}
+		}
+		return pratoRepository.save(prato);
 	}
 
 	public void delete(Long id) {
